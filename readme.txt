@@ -8,7 +8,7 @@ Requires at least: 2.5
 Tested up to: 4.5
 Stable tag: 0.1
 
-A few REST endpoints for BuddyPress
+A few REST endpoints for WP Support Plus
 
 == Description ==
 
@@ -19,8 +19,7 @@ Allows you to:
 - Get topics
 - Post replies
 
-In the long term, I recommend this:
-https://github.com/buddypress/BP-REST
+Actions extracted from ajax.php
 
 == Installation ==
 

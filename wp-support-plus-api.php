@@ -9,4 +9,22 @@
  * Domain Path:       /languages
  */
 
- 
+global $wpdb;
+
+function wpsp_fetch_tickets( WP_REST_Request $request ) {
+  global $wpdb;
+	$sql="SELECT * FROM {$wpdb->prefix}wpsp_ticket";
+  $tickets=$wpdb->get_results($sql);
+  return $tickets;
+}
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'wpsp/v1', '/tickets', array(
+		'methods' => 'GET',
+		'callback' => 'wpsp_fetch_tickets',
+    'permission_callback' => function () {
+      // TODO: check that this is the best permission
+      return current_user_can( 'edit_others_posts' );
+    },
+	) );
+} );
