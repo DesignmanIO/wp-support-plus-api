@@ -10,6 +10,9 @@
  */
 
 global $wpdb;
+$WCE_PLUGIN_DIR = plugin_dir_path( __DIR__ ).'wp-support-plus-responsive-ticket-system/';
+include( $WCE_PLUGIN_DIR.'includes/admin/ajax.php' );
+include( $WCE_PLUGIN_DIR.'includes/admin/validations/create_ticket.php' );
 
 function wpsp_fetch_tickets( WP_REST_Request $request ) {
   global $wpdb;
@@ -19,11 +22,14 @@ function wpsp_fetch_tickets( WP_REST_Request $request ) {
 }
 
 function wpsp_post_ticket( WP_REST_Request $request ) {
-  // global $wpdb;
-  include( plugin_dir_path( __DIR__ ).'wp-support-plus-responsive-ticket-system/includes/admin/ajax.php' );
+  global $wpdb;
+  // return class_exists('WPSPTicketCreate');
+  $_POST['user_id'] = 0;
+  $ticket=new WPSPTicketCreate();
+  return $ticket;
   // include( plugin_dir_path( __DIR__ ).'wp-support-plus-responsive-ticket-system/includes/admin/actions/load_wpsp_actions.php' );
-  $actions=new SupportPlusAjax();
-  $actions.createNewTicket();
+  // $actions=new SupportPlusAjax();
+  // $actions.createNewTicket();
   // return $GLOBALS['SupportPlusAjax'];
   // $ticket = wp_ajax_createNewTicket();
   // return $ticket;
